@@ -26,28 +26,32 @@ for (int i = 0; i < m; i++)
 }
 
 Console.WriteLine();
+Console.WriteLine("В итоге получается вот такой массив:");
 
-int [,] array = new int [m,n];
 for (int i = 0; i < m; i++)
 {
-int max = 0;
-    for (int j = 0; j < n; j++)
+    for (int count = 0; count < n; count++)
     {
-            if (matrix[i,j] > max)
+    int max = 0;
+    int temp = 0;
+        for (int j = count; j < n; j++)
             {
-                max = matrix[i,j];
-                array[i,0] = max;
+                if (matrix[i,j] > max)
+                    {
+                        max = matrix[i,j];
+                        temp = matrix[i,count];
+                        matrix[i,count] = max;
+                        matrix[i,j] = temp;
+                    }
             }
-        //Console.Write(array[i,j]+" ");
     }
-    Console.WriteLine();
 }
 
 for (int i = 0; i < m; i++)
 {
     for (int j = 0; j < n; j++)
     {
-        Console.Write(array[i,j]+" ");
+        Console.Write(matrix[i,j]+" ");
     }
     Console.WriteLine();
 }

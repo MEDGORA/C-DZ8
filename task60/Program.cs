@@ -16,6 +16,7 @@ Console.Write("Введите  l: ");
 int l = Convert.ToInt32(Console.ReadLine());
 
 int [,,] matrix = new int [m,n,l];
+int newDigit = 0;
 for (int digit = 10; digit < 100; digit++)
 {
     int count = 0;
@@ -30,9 +31,17 @@ for (int digit = 10; digit < 100; digit++)
                 {
                     count++;
                 }
-                else if (count > 1)
+                else if (count == 0)
                 {
-                    matrix[i,j,k] = new Random().Next(digit+1,100); // Вот здесь может быть непонятная ситуация когда digit = 99 
+                    newDigit = digit;
+                }
+                else if (digit < 99 && count > 1)
+                {
+                    matrix[i,j,k] = new Random().Next(digit+1,100); 
+                }
+                else if (digit == 99 && count > 1)
+                {
+                    matrix[i,j,k] = newDigit;
                 }
             }
         }
